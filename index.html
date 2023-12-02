@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Cool Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  
+  
+  <body>
+    <header>
+      <nav>
+        <a href="#" class="view_high_scores">View high scores</a>
+        <span id="timer">time</span>
+      </nav>
+    </header>
+   
+
+<!--First Page Intro information-->
+  <div class="info_box" id="introduction">
+    <div class="info_title">
+      <h1>Coding Quiz Challenge</h1> <!--Maybe I make this H1?-->
+    </div>
+    <div class="info_rules">
+      <p>Try to answer the following code-related 
+        questions within the time limit. Keep in mind that
+        incorrect answers will penalize your score/time by
+        ten seconds!</p>
+    </div>
+  </div>
+  
+  <!--Start Quiz Button-->
+  <div class="start_btn">
+        <button>Start Quiz</button>
+  </div>
+
+  <!--Quiz Question Card-->
+  <section class="container">
+    <div id="quiz_body" class="hide">
+      <h2 id="question" class="quiz_question">Questions</h2>
+      <div id="answer_buttons" class="btn_column">
+        <button class="option_btn">Answer 1</button>
+        <button class="option_btn">Answer 2</button>
+        <button class="option_btn">Answer 3</button>
+        <button class="option_btn">Answer 4</button>
+      </div>
+    <!--Footer where the result for the question shows-->
+      <div class="quiz_footer">
+        <span id="result">Result</span>
+      </div>  
+      
+      
+    </div>
+    
+  
+  </section>
+  
+
+
+
+
+
+</body>
+</html>

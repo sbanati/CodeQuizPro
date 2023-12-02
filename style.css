@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+
+body {
+    background: #fff;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+   
+    
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.view_high_scores {
+    color: rgb(201, 100, 247);
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-left: 5rem;
+}
+
+#timer {
+    color: #000;
+    margin-right: 2rem;
+    font-size: 1.7rem;
+    margin-right: 8rem;
+    font-weight: 500;
+}
+
+
+
+/* Formatting start quiz button */
+
+.start_btn {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+}
+
+
+/* Styles applied to the Start Quiz Button */ 
+.start_btn button {
+    background-color: #6441a5;
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    cursor: pointer;
+    font-size: 1.8rem;
+    border:none;
+    border-radius: 1rem;  
+}
+
+.start_btn button:hover {
+    background-color: rgb(201, 100, 247);
+    
+}
+
+.info_box {
+    position:absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+    text-align: center;   
+}
+
+.info_title h1 {
+    font-size: 4rem;
+    color: #000;
+    font-weight: 700;
+    text-align: center; 
+    
+}
+
+.info_rules p {
+    color:#000;
+    font-weight: 500;
+    font-size: 2.3rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+/* TO DO 
+Add styling to the quiz buttons. Make the theme the same
+as the start quiz theme. Make the buttons flex direction
+column so they are stacked ontop and spaced properly. 
+Then the answer can be spaced evenly in the footer. 
+*/
