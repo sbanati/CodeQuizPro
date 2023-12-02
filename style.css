@@ -1,3 +1,15 @@
+:root {
+
+ --btn-main-color: #6441a5;
+--btn-event-color: rgb(201, 100, 247);
+--main-text-color: #000;
+ --accent-bg-color:#fff;
+  --tertiary-color:#ccc;
+
+
+}
+
+
 *{
     margin: 0;
     padding: 0;
@@ -8,7 +20,7 @@
 
 
 body {
-    background: #fff;
+    background: var(--accent-bg-color);
 
 }
 
@@ -29,7 +41,7 @@ nav {
 }
 
 .view_high_scores {
-    color: rgb(201, 100, 247);
+    color: var(--btn-event-color);
     text-decoration: none;
     font-size: 1.6rem;
     font-weight: 500;
@@ -37,7 +49,7 @@ nav {
 }
 
 #timer {
-    color: #000;
+    color: var(--main-text-color);
     margin-right: 2rem;
     font-size: 1.7rem;
     margin-right: 8rem;
@@ -58,7 +70,7 @@ nav {
 
 /* Styles applied to the Start Quiz Button */ 
 .start_btn button {
-    background-color: #6441a5;
+    background-color:var(--btn-main-color);
     color: #fff;
     padding: 0.8rem 1.8rem;
     cursor: pointer;
@@ -68,7 +80,7 @@ nav {
 }
 
 .start_btn button:hover {
-    background-color: rgb(201, 100, 247);
+    background-color:var(--btn-event-color);
     
 }
 
@@ -82,14 +94,14 @@ nav {
 
 .info_title h1 {
     font-size: 4rem;
-    color: #000;
+    color: var(--main-text-color);
     font-weight: 700;
     text-align: center; 
     
 }
 
 .info_rules p {
-    color:#000;
+    color:var(--main-text-color);
     font-weight: 500;
     font-size: 2.3rem;
     padding-top: 2rem;
@@ -101,9 +113,64 @@ nav {
 
 }
 
+/*quiz Question Card Styling Begins Here */
+
+.container {
+    background-color: var(--accent-bg-color);
+    padding:2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.);
+
+}
+
+.btn_column {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+    padding: 10px;
+}
+
+.option_btn {
+    background-color: var(--btn-main-color);
+    color: var(--accent-bg-color);
+    padding: 0.8rem 1.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    max-width: 10rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.option_btn:hover {
+    background-color: var(--btn-event-color);
+}
+
+
+.quiz_question {
+    color:var(--main-text-color);
+    font-size: 2.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+
+}
+
+.quiz_footer{
+    margin-top: 2rem;
+    color: var(--main-text-color);
+    font-size: 2rem;
+    border-top: 0.1rem solid var(--tertiary-color);
+    width: 25%;
+    
+}
+
+
+
+
+
 /* TO DO 
-Add styling to the quiz buttons. Make the theme the same
-as the start quiz theme. Make the buttons flex direction
-column so they are stacked ontop and spaced properly. 
-Then the answer can be spaced evenly in the footer. 
+Add styling to the submission screen elements. 
+Make the submit button on the right side of the box.
+Might have to use flex direction column and move it.
+Add the overall theme styles to that page as well. 
 */
