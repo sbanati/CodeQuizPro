@@ -1,5 +1,56 @@
-/* Psuedo code of what I think I need to do. 
+let timer; 
+let score = 0;
+let questionIndex = 0;
 
+let questions = [
+    {
+      question: 'Commonly used data types DO Not include',
+      options: ['strings', 'booleans', 'alerts', 'numbers'],
+      answer: 'booleans'
+    },
+
+    {
+        question:'The condition in an if / else statement is enclosed with _____',
+        options: ['quotes', 'curly brackets', 'parenthesis', 'square brackets'],
+        answer:'parenthesis'
+    },
+
+    {
+        question:'Arrays in JavaScript can be used to store ____',
+        options: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
+        answer: 'all of the above',
+
+    },   
+
+    {
+        question:'String values must be enclosed within ____ when being assigned to variables.',
+        options:['commas', 'curly brackets', 'quotes', 'parenthesis'],
+        answer: 'curly brackets',
+
+    },
+
+    { 
+        question: 'A very useful tool used during development and debugging for printing content to the debugger is?',
+        options:['JavaScript','Terminal Bash','for loop','console.log' ],
+        answer:'for loop',
+
+    },
+
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Psuedo code of what I think I need to do. 
 1. Set up the global variables for the Quiz App:
 a) Timer
     -variable to keep track of the time during the quiz.
@@ -24,34 +75,22 @@ a) The questions will need to be stored in an array.
     - let questions = [
         {
             question: "bla blah blah ?"
-            options: (a, b, c, d)
+            options or choices: (a, b, c, d)
             answer: "C"
         }
 
     ]
-b) each question will be in its own array. 
-    -apart of the original block defined by 
-    "let questions = ["
 
-    *!might need help with the syntax here!*
-    
-    - Again the idea is let question = [
-        {
-            (question, options, answer for #1)
-        }
-        { 
-            (question, options, answer for #2)
-        }
-    ]
 
 
 3. A function to call start quiz when start quiz btn pressed/
 a) something like function initiateQuiz() {}
-    - I will need to hide the intro section 
+    - I will need to hide the quiz elements  
       (use the ids and hide them. )
     - Show the quiz section 
     - Initialize the timer 
     - Show the first question. 
+    - gelElementID and setInterval for timer i think.
 
 4. A function to go through the question array
 a) something like function showQuestion() {} 
@@ -65,7 +104,7 @@ a) something like function showQuestion() {}
 a) function updateTimer() {}
    - decrease the timer 
    - show the timer as it updates
-   - reflect penalty for unanswered questions
+   - reflect penalty for incorrect answered questions
 
 6. Create a function to end the quiz 
 a) function endOfQuiz() {}

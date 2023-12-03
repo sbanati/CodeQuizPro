@@ -164,13 +164,65 @@ nav {
     
 }
 
+/*submission Screen Starts Here */
 
+.scores_card {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: var(--accent-bg-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.);
+}
+
+.done_prompt {
+    color: var(--main-text-color);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+
+}
+
+
+.score_total p {
+    color:var(--main-text-color);
+    font-weight: 500;
+    font-size: 1rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    text-align: left;
+    display: flex;
+    
+}
+
+
+.submission_btn {
+    margin-top: 2rem;
+    display:flex;
+    justify-content:left;
+}
+
+.submission_btn button {
+    background-color: var(--btn-main-color);
+    color: var(--accent-bg-color);
+    padding: 0.3rem 1.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    max-width: 10rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+
+.submission_btn button:hover {
+    background-color: var(--btn-event-color);
+}
 
 
 
 /* TO DO 
-Add styling to the submission screen elements. 
-Make the submit button on the right side of the box.
-Might have to use flex direction column and move it.
-Add the overall theme styles to that page as well. 
+Make a high score screen with logs for the scores,
+add a go back button for the start of the quiz intro screen
+and a clear high scores button. 
 */
