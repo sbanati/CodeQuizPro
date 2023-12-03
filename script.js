@@ -38,6 +38,24 @@ let questions = [
 
 ];
 
+function initiateQuiz() {
+    
+    document.getElementById('introduction').style.display='none';
+    
+    document.getElementById('quiz_body').classList.remove('hide');
+
+    document.querySelector('.start_btn').style.display='none';
+    
+    
+    
+    timer = setInterval(updateTimer, 1000);
+
+    showQuestion();
+
+
+
+}
+
 
 
 

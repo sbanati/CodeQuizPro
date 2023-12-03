@@ -34,11 +34,12 @@
         incorrect answers will penalize your score/time by
         ten seconds!</p>
     </div>
-  </div>
+  </div> 
   
   <!--Start Quiz Button-->
-  <div class="start_btn">
-        <button>Start Quiz</button>
+  
+  <div class="start_btn"> 
+        <button onclick="initiateQuiz()">Start Quiz</button>
   </div>
 
   <!--Quiz Question Card-->
@@ -60,14 +61,15 @@
     </div>
 
     <!-- Submission Screen-->
-    <div class="scores_card">
-      <div id="score_body" class="hide">
+    <div class="scores_card hide">
+      <div id="score_body">
         <h3 id="finish" class="done_prompt">All Done!</h3>
         <div class="score_total">
           <p>Your final score is blah</p>
         </div>
         <div class="input_container">
-          <input>
+          <label for="user_initials">Enter Initials:</label>
+          <input type="text" id="user_initials">
         </div>
         <div id="btn_submit" class="submission_btn">
           <button>Submit</button>
