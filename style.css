@@ -120,9 +120,8 @@ nav {
 
 .container {
     background-color: var(--accent-bg-color);
-    padding:2rem;
+    padding:1rem;
     border-radius: 1rem;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.);
     position: absolute;
     top: 30%;
     left: 35%;
