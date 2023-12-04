@@ -1,127 +1,149 @@
-let timer; // Marks the timer 
-let score = 0; // Users score 
+let timer; // Marks the timer
+let score = 0; // Users score
 let currentQuestionIndex = 0; // Tracks the questions index
 let timeLeft = 90; // Starting time that will count down from
-const timePenalty = 10
-let highScore = []
-const maxHighScore = 5
+const timePenalty = 10;
+let highScore = [];
+const maxHighScore = 5;
+
+let timeEl = document.getElementById("timer");
+let quizEl = document.getElementById("quiz_body");
 
 
 // Questions are stored in an Array
 
 const questions = [
-    {
-      question: 'Commonly used data types DO Not include',
-      options: ['strings', 'booleans', 'alerts', 'numbers'],
-      answer: 'booleans'
-    },
+  {
+    question: "Commonly used data types DO Not include",
+    options: ["strings", "booleans", "alerts", "numbers"],
+    answer: "booleans",
+  },
 
-    {
-        question:'The condition in an if / else statement is enclosed with _____',
-        options: ['quotes', 'curly brackets', 'parenthesis', 'square brackets'],
-        answer:'parenthesis'
-    },
+  {
+    question: "The condition in an if / else statement is enclosed with _____",
+    options: ["quotes", "curly brackets", "parenthesis", "square brackets"],
+    answer: "parenthesis",
+  },
 
-    {
-        question:'Arrays in JavaScript can be used to store ____',
-        options: ['numbers and strings', 'other arrays', 'booleans', 'all of the above'],
-        answer: 'all of the above',
+  {
+    question: "Arrays in JavaScript can be used to store ____",
+    options: [
+      "numbers and strings",
+      "other arrays",
+      "booleans",
+      "all of the above",
+    ],
+    answer: "all of the above",
+  },
 
-    },   
+  {
+    question:
+      "String values must be enclosed within ____ when being assigned to variables.",
+    options: ["commas", "curly brackets", "quotes", "parenthesis"],
+    answer: "curly brackets",
+  },
 
-    {
-        question:'String values must be enclosed within ____ when being assigned to variables.',
-        options:['commas', 'curly brackets', 'quotes', 'parenthesis'],
-        answer: 'curly brackets',
-
-    },
-
-    { 
-        question: 'A very useful tool used during development and debugging for printing content to the debugger is?',
-        options:['JavaScript','Terminal Bash','for loop','console.log' ],
-        answer:'for loop',
-
-    },
-
+  {
+    question:
+      "A very useful tool used during development and debugging for printing content to the debugger is?",
+    options: ["JavaScript", "Terminal Bash", "for loop", "console.log"],
+    answer: "for loop",
+  },
 ];
+
 // Function to call start quiz //
 function initiateQuiz() {
-    
-    // Hides the introduction section explaining the rules 
-    document.getElementById('introduction').classList.add('hide');
-    
-    // Hides the start btn after pressing it
-    document.querySelector('.start_btn').classList.add('hide');
-    
-    
-    // Starts the timer and updates every 1 second 
-    timer = setInterval(updateTimer, 1000);
+  // Hides the introduction section explaining the rules
+  document.getElementById("introduction").classList.add("hide");
+  
 
-    // First question 
-    askQuestions();
+  // Shows the quiz question card
+  quizEl.classList.remove("hide");
+
+  timeEl.textContent = timeLeft + " seconds";
+
+  // Starts the timer and updates every 1 second
+  timer = setInterval(updateTimer, 1000);
+
+  document.getElementById("start").classList.add("start_btn");
+  
+
+  
+  // First question
+  askQuestions();
+
+  
+
+
+
+
+
 
 }
 
 // Function to call the update of timer.
 
 function updateTimer() {
+  // If time left is 0
 
-    // If time left is 0 
-    
-    if (timeLeft <=0) {
-        clearInterval(timer); // Stops the timer if time reaches 0
+  if (timeLeft <= 0) {
+    // Stops the timer if time reaches 0
 
-        endQuiz(); // Will call endQuiz
-
-    } else {
-        
-        // Updates the timer on html 
-        document.getElementById('timer').textContent = timeLeft + 'seconds';
-        
-        //Subtracts the time left by 1
-        timeLeft--;
-    }
+    endOfQuiz(); // Will call endQuiz
+  } else {
+    //Subtracts the time left by 1
+    timeLeft--;
+    // Updates the timer on html
+    timeEl.textContent = timeLeft + "seconds";
+  }
 }
 
 function askQuestions() {
+  let currentQuestion = questions[currentQuestionIndex];
+  
+  // create your element
+  const h2El = document.createElement("h2");
+  const questionDiv = document.createElement("div");
+  quizEl.innerHTML = '';
+  
+  // add content to your element
+  h2El.textContent = currentQuestion.question;
+  h2El.setAttribute("class", "quiz_question");
+  
+  for (let i = 0; i < currentQuestion.options.length; i++) {
+    const btnEl = document.createElement("button");
 
-    // Shows the quiz question card
-    document.getElementById('quiz_body').classList.remove('hide');
+    btnEl.textContent = currentQuestion.options[i];
+    btnEl.setAttribute("class", "btn_column")
 
-    // for loop goes through each question in the array 
-    for (var i = 0; i < questions.length; i++) {
-        
-        // Shows the current question
-        showQuestion(i);
-        /* Now Im stuck, I feel like once the question is shown I need another 
-        function to go through the current question = question index ?? 
+    btnEl.addEventListener("click", choiceClick);
 
-        i do know we will use getElementId on questions and answer_buttons ids 
-        i do know if i want questions actual text to display i use .textContent. */
+    questionDiv.append(btnEl);
+  }
 
-
-
-    }
-        
-
-
-/* for each question 
-    - show the question and answer 
-    - let user interact 
-    - onclick update score [could be separate function]
-    - loops again to show next question until we run through all of them */
+ 
+  // append your element to the parent element
+  quizEl.append(h2El, questionDiv);
 
 }
 
+ function choiceClick() {
+    currentQuestionIndex++;
 
+    if (currentQuestionIndex === questions.length) {
+      endOfQuiz();
+    } else {
+      askQuestions();
+    }
+  }
 
+function endOfQuiz() {
+  clearInterval(timer);
+}
 
+document.querySelector(".start_btn").addEventListener("click", initiateQuiz);
 
-
-
-
-
-/* Psuedo code of what I think I need to do. 
+/* Psuedo code of what I think I need to do.
 1.✅ Set up the global variables for the Quiz App:
 a)✅ Timer
     -variable to keep track of the time during the quiz.
@@ -161,7 +183,7 @@ a) something like function initiateQuiz() {}
     - Show the first question. 
     - gelElementID and setInterval for timer i think.
 
-4. A function to go through the question array
+4. ✅A function to go through the question array
 a) something like function showQuestion() {} 
     - shows the question and answer 
     - let the user click on the options
@@ -175,7 +197,7 @@ a) function updateTimer() {}
    - show the timer as it updates
    *!reflect penalty for incorrect answered questions!*
 
-6. Create a function to end the quiz 
+6. ✅Create a function to end the quiz 
 a) function endOfQuiz() {}
     - Stop the timer
     - display the users score 
@@ -188,26 +210,8 @@ a) function endOfQuiz() {}
 *! Side note, ill need to make event listeners for 
 * start quiz button , go back button, clear score button,
 * submit button  
-*/ 
-/* Maybe instead of function showQuestion, I can add two functions.
-1 for showing the question and displaying answers 
-The other function will be soemthing like function usersAnswer
-and this will check if the question is correct. Something like 
-if (userAnswer === the questions answer then its correct and 
-    score++  else wrong and timeLeft --) */
-/*If i do this method do i use for loop? dont i also need to write something
-like if (questionIndex < questions.legnth) {
-    showQuestion() 
-} else {
-    endQuiz(); 
-}
-I am confused on how I should approach the main question logic and 
-where the penalty should go. This is why I am thinking do I need to do
-function - display question 
-function - resolve answer (or penalty)
-function - end quiz , if so, where does the forloop go */ 
 
-    
-
-
-    
+/* Penalty for wrong answers = timer-- 
+function for Input screen for initals 
+function for leaderboard screen 
+function to resolve correct / incorrect answers */
