@@ -8,6 +8,8 @@ const maxHighScore = 5;
 
 let timeEl = document.getElementById("timer");
 let quizEl = document.getElementById("quiz_body");
+let submissionScreenEl = document.getElementById("submission_screen");
+
 
 
 // Questions are stored in an Array
@@ -27,25 +29,18 @@ const questions = [
 
   {
     question: "Arrays in JavaScript can be used to store ____",
-    options: [
-      "numbers and strings",
-      "other arrays",
-      "booleans",
-      "all of the above",
-    ],
+    options: [ "numbers and strings",  "other arrays", "booleans", "all of the above"],
     answer: "all of the above",
   },
 
   {
-    question:
-      "String values must be enclosed within ____ when being assigned to variables.",
+    question: "String values must be enclosed within ____ when being assigned to variables.",
     options: ["commas", "curly brackets", "quotes", "parenthesis"],
     answer: "curly brackets",
   },
 
   {
-    question:
-      "A very useful tool used during development and debugging for printing content to the debugger is?",
+    question: "A very useful tool used during development and debugging for printing content to the debugger is?",
     options: ["JavaScript", "Terminal Bash", "for loop", "console.log"],
     answer: "for loop",
   },
@@ -53,31 +48,25 @@ const questions = [
 
 // Function to call start quiz //
 function initiateQuiz() {
+  
   // Hides the introduction section explaining the rules
   document.getElementById("introduction").classList.add("hide");
   
 
   // Shows the quiz question card
   quizEl.classList.remove("hide");
-
+  // selects the timer and sets the time left
   timeEl.textContent = timeLeft + " seconds";
 
   // Starts the timer and updates every 1 second
   timer = setInterval(updateTimer, 1000);
-
+  // selects the start button by id and adds the start_btn style
   document.getElementById("start").classList.add("start_btn");
   
 
-  
+
   // First question
   askQuestions();
-
-  
-
-
-
-
-
 
 }
 
@@ -94,7 +83,7 @@ function updateTimer() {
     //Subtracts the time left by 1
     timeLeft--;
     // Updates the timer on html
-    timeEl.textContent = timeLeft + "seconds";
+    timeEl.textContent = timeLeft +  "seconds";
   }
 }
 
@@ -130,16 +119,71 @@ function askQuestions() {
  function choiceClick() {
     currentQuestionIndex++;
 
-    if (currentQuestionIndex === questions.length) {
-      endOfQuiz();
-    } else {
+    if (currentQuestionIndex < questions.length) {
       askQuestions();
+    } else {
+      endOfQuiz();
     }
   }
 
 function endOfQuiz() {
+  
+  // stops the timer 
   clearInterval(timer);
+  // hides the quiz question card
+  quizEl.classList.add("hide");
+  
+  
+  //calls the submissionScreen function
+  submissionScreen();
+  
+
 }
+
+
+function submissionScreen() {
+
+    // reveals the submission screen
+    submissionScreenEl.classList.remove("hide");
+
+    // create your element 
+    const h3El = document.createElement('h3')
+    const scoreTotalEl = document.createElement('div');
+    const inputContainerEl = document.createElement('div');
+    const labelEl = document.createElement('label');
+    const inputEl = document.createElement('input');
+    const btnSubmitEl = document.createElement('div'); 
+    const buttonEl = document.createElement('button');
+
+    // add contnet to your element
+    h3El.textContent = "All Done!";
+    scoreTotalEl.innerHTML = "<p>Your final score is blah</p>";
+    labelEl.textContent = "Enter Initials:";
+    inputEl.setAttribute('type', 'text');
+    inputEl.setAttribute('id', 'user_initials');
+    btnSubmitEl.setAttribute('id', 'btn_submit');
+    buttonEl.textContent = 'Submit';
+
+
+    // Add class styles to the elements
+    h3El.classList.add('done_prompt');
+    scoreTotalEl.classList.add('score_total');
+    buttonEl.classList.add('submission_btn');
+    inputContainerEl.classList.add('input_container');
+
+  
+  
+  
+    // append your element to the parent element
+    submissionScreenEl.append(h3El, scoreTotalEl, inputContainerEl, btnSubmitEl);
+    inputContainerEl.append(labelEl, inputEl);
+    btnSubmitEl.append(buttonEl);
+
+
+
+
+}
+
 
 document.querySelector(".start_btn").addEventListener("click", initiateQuiz);
 
@@ -215,3 +259,5 @@ a) function endOfQuiz() {}
 function for Input screen for initals 
 function for leaderboard screen 
 function to resolve correct / incorrect answers */
+
+
