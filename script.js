@@ -5,12 +5,15 @@ let timeLeft = 90; // Starting time that will count down from
 const timePenalty = 10;
 let highScore = [];
 const maxHighScore = 5;
-
+let userInitials;
+let inputEl;
 let timeEl = document.getElementById("timer");
 let quizEl = document.getElementById("quiz_body");
 let submissionScreenEl = document.getElementById("submission_screen");
-
-
+let leaderBoardEl = document.getElementById('leaderboard_page');
+let returnBtn;
+let clearBtn;
+let currentQuestion;
 
 // Questions are stored in an Array
 
@@ -48,10 +51,20 @@ const questions = [
 
 // Function to call start quiz //
 function initiateQuiz() {
+  //resets the current question index to 0 so the quiz can run again.
+  currentQuestionIndex = 0;
+
+   // Reset the score to 0
+   score = 0;
   
   // Hides the introduction section explaining the rules
   document.getElementById("introduction").classList.add("hide");
   
+   // Clears the content of the initials screen
+   submissionScreenEl.innerHTML = '';
+
+   // Clears the content of the leaderboard screen
+  leaderBoardEl.innerHTML = '';
 
   // Shows the quiz question card
   quizEl.classList.remove("hide");
@@ -83,19 +96,21 @@ function updateTimer() {
     //Subtracts the time left by 1
     timeLeft--;
     // Updates the timer on html
-    timeEl.textContent = timeLeft +  "seconds";
+    timeEl.textContent = timeLeft + " seconds";
   }
 }
 
 function askQuestions() {
-  let currentQuestion = questions[currentQuestionIndex];
+   currentQuestion = questions[currentQuestionIndex];
   
   // create your element
   const h2El = document.createElement("h2");
   const questionDiv = document.createElement("div");
+  const scoreInfo = document.createElement("p");
+  
   quizEl.innerHTML = '';
   
-  // add content to your element
+  // add content to your question element
   h2El.textContent = currentQuestion.question;
   h2El.setAttribute("class", "quiz_question");
   
@@ -112,19 +127,100 @@ function askQuestions() {
 
  
   // append your element to the parent element
-  quizEl.append(h2El, questionDiv);
+  quizEl.append(h2El, questionDiv, scoreInfo);
+
+  
+  // add the content for the element 
+  scoreInfo.textContent = 'Score: ' +  score; 
+  scoreInfo.classList.add('score-info');
+  
+
+  // Display the result from the lasdt question if a result is there
+  displayResult()
 
 }
 
- function choiceClick() {
-    currentQuestionIndex++;
 
+
+
+ function choiceClick(event) {
+    //get the text content from the selected option
+    const selectedAnswer = event.target.textContent;
+
+    // checks if the answer that was selected is correct
+    if (selectedAnswer === currentQuestion.answer) {
+
+      //Increase the score for correct answers 
+      score+= 10;
+
+      //Display the correct answer on the screen
+      displayResult('Correct');
+    
+  
+    }else{
+
+      // Subtract time for the incorrect answer
+      timeLeft -= timePenalty;
+
+      // Display incorrect on the screen
+      displayResult('Incorrect');
+    }
+
+    // create an element
+    //Display the right or wrong result at the bottom of next question
+    const resultEl = document.createElement('p');
+
+    // add content to the created element
+    resultEl.textContent = selectedAnswer === currentQuestion.answer ? 'Correct' : 'Incorrect';
+    resultEl.classList.add('result');
+
+
+    //Append the result element to the quiz container
+    quizEl.appendChild(resultEl);
+
+
+
+    // Moves to the next question or can end the quiz
+    currentQuestionIndex++;
+    
+    // if there are more questions they are asked other wise end the quiz
     if (currentQuestionIndex < questions.length) {
       askQuestions();
     } else {
       endOfQuiz();
     }
   }
+
+
+
+
+  function displayResult(result) {
+
+    if (result) {
+
+      //Create the result element
+      const resultEl = document.createElement('p')
+
+
+  
+      // add content to the result element
+      resultEl.textContent = result;
+
+
+      //append the result element to the quiz container
+      quizEl.appendChild(resultEl);
+
+       //remove the result element after a short delay
+       setTimeout(() => {
+       resultEl.remove();
+
+    }, 10000);
+  }  
+}
+
+
+
+
 
 function endOfQuiz() {
   
@@ -151,7 +247,7 @@ function submissionScreen() {
     const scoreTotalEl = document.createElement('div');
     const inputContainerEl = document.createElement('div');
     const labelEl = document.createElement('label');
-    const inputEl = document.createElement('input');
+     inputEl = document.createElement('input');
     const btnSubmitEl = document.createElement('div'); 
     const buttonEl = document.createElement('button');
 
@@ -179,85 +275,117 @@ function submissionScreen() {
     inputContainerEl.append(labelEl, inputEl);
     btnSubmitEl.append(buttonEl);
 
+    scoreTotalEl.innerHTML = `<p>Your final score is ${score}</p>`;
+
+    
+    
+     // Event listener for the submit button
+     btnSubmitEl.addEventListener('click', submissionInput);
+
+}
+
+
+function submissionInput() {
+     
+    // getting this user initials , trim removes whitespace
+    userInitials = inputEl.value.trim();
+
+    if (userInitials !== '') {
+
+
+      leaderBoard();
+
+
+    } else {
+
+      alert('please enter name or initials. ');
+    }
+
+
+  }
+
+
+
+function leaderBoard() {
+  
+  submissionScreenEl.classList.add("hide");
+  
+  // shows the leaderboard screen
+  leaderBoardEl.classList.remove("hide");
+
+  // create your element 
+  const h4El = document.createElement('h4');
+   returnBtn = document.createElement('button')
+   clearBtn = document.createElement('button')
+  const scoresContainer = document.createElement('div')
+
+
+// add content to your element
+  h4El.textContent = 'High scores'
+  returnBtn.textContent = 'Return'
+  clearBtn.textContent = 'Clear Scores'
+  scoresContainer.setAttribute('id', 'scoresContainer')
+
+
+
+  // Add class styles to the elements
+    h4El.classList.add('high_score_title');
+    returnBtn.classList.add('btn', 'return_btn');
+    clearBtn.classList.add('btn', 'clear_btn');
+    scoresContainer.classList.add('scores_container');
+
+
+
+// append your element to the parent element
+  leaderBoardEl.append(h4El, returnBtn, clearBtn, scoresContainer);
+
+
+
+
+// Event listeners 
+document.querySelector('.return_btn').addEventListener("click", returnToStart);
+document.querySelector('.clear_btn').addEventListener("click", clearLeaderBoard);
 
 
 
 }
 
 
+function returnToStart() {
+    // Hides the leaderboard and shows the introduction screen
+    leaderBoardEl.classList.add('hide');
+    document.getElementById('introduction').classList.remove('hide');
+}
+
+function clearLeaderBoard(){
+    //clears the leaderboard scores 
+    document.getElementById('scoresContainer').innerHTML = '';
+}
+
 document.querySelector(".start_btn").addEventListener("click", initiateQuiz);
 
-/* Psuedo code of what I think I need to do.
-1.✅ Set up the global variables for the Quiz App:
-a)✅ Timer
-    -variable to keep track of the time during the quiz.
-    -Countdown timer that counts down from the limit.
-    -something like "let timer;"
-b)✅ Score
-    -variable to keep track of the users score as 
-    they answer questions
 
-c)✅ The question index
-    - I am already thinking of using an array.
-    - Question index will be updated as the user
-    progresses through the questions. 
-    -This variable will update the question index.
-    - Something like let questionIndex = 0.
-    *!not sure about this one!*
 
-2.✅ I need to define the quiz questions and the answers.
-a) The questions will need to be stored in an array.
-    - Each question will need to be broken down into 
-      3 parts. 
-    - let questions = [
-        {
-            question: "bla blah blah ?"
-            options or choices: (a, b, c, d)
-            answer: "C"
-        }
 
-    ]
 
-3.✅ A function to call start quiz when start quiz btn pressed/
-a) something like function initiateQuiz() {}
-    - I will need to hide the quiz elements  
-      (use the classes or ids and hide them. )
-    - Show the quiz section 
-    - Initialize the timer 
-    - Show the first question. 
-    - gelElementID and setInterval for timer i think.
 
-4. ✅A function to go through the question array
-a) something like function showQuestion() {} 
-    - shows the question and answer 
-    - let the user click on the options
-    - check if the answer is correct 
-    - update the score 
-    - pull up the next question
 
-5.✅ A function to update the timer:
-a) function updateTimer() {}
-   - decrease the timer 
-   - show the timer as it updates
-   *!reflect penalty for incorrect answered questions!*
 
-6. ✅Create a function to end the quiz 
-a) function endOfQuiz() {}
-    - Stop the timer
-    - display the users score 
-    - ill need to make a screen for user initials.
-    - On submit, takes user to screen where the 
-    highscore is displayed and go back or clear scores 
-    btns are there. 
-    - go back btn will take user back to intro screen.
 
+
+
+
+/*
 *! Side note, ill need to make event listeners for 
 * start quiz button , go back button, clear score button,
 * submit button  
 
-/* Penalty for wrong answers = timer-- 
-function for Input screen for initals 
-function for leaderboard screen 
-function to resolve correct / incorrect answers */
+!TODO !-- function for leaderboard screen -- !
+
+!TODO !-- function to store user data and display on leaderboard screen -- !
+
+*/
+
+ 
 
 
