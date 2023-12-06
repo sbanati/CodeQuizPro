@@ -151,6 +151,9 @@ nav {
 }
 
 
+
+
+
 .btn_column:hover {
     background-color: var(--btn-event-color);
     
@@ -238,5 +241,51 @@ nav {
 
 
 
+.return_btn,
+.clear_btn {
+    
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    background-color: var(--btn-main-color);
+    color: var(--accent-bg-color);
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    max-width: 10rem;
+    font-size: 1.3rem;
+    font-weight: 100;
+    white-space: nowrap;
+    align-items: center;
+    
+    
+}
 
 
+
+.high_score_title{
+    font-size: 3rem;
+    color: var(--main-text-color);
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 1rem; 
+    
+}
+
+.leaderboard_entry{
+    color:var(--main-text-color);
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 2.1rem;
+
+}
+
+.score_info{
+    font-size: 1.5rem;
+
+}

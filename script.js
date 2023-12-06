@@ -1,26 +1,26 @@
+//variables in the global scope 
 let timer; // Marks the timer
-let score = 0; // Users score
+let score = 0; // Users starting score
 let currentQuestionIndex = 0; // Tracks the questions index
 let timeLeft = 90; // Starting time that will count down from
-const timePenalty = 10;
-let highScore = [];
-const maxHighScore = 5;
 let userInitials;
 let inputEl;
+let currentQuestion;
+const maxHighScore = 20;// max size of leaderboard
+const timePenalty = 10;
+
+
+// Created DOM elements by ID 
 let timeEl = document.getElementById("timer");
 let quizEl = document.getElementById("quiz_body");
 let submissionScreenEl = document.getElementById("submission_screen");
 let leaderBoardEl = document.getElementById("leaderboard_page");
 const highscoreLink = document.getElementById("highscore_link");
-let returnBtn;
-let clearBtn;
-let currentQuestion;
 const scoresContainer = document.createElement("div");
 scoresContainer.setAttribute("id", "scoresContainer");
 scoresContainer.classList.add("scores_container");
 
-// Questions are stored in an Array
-
+// Questions are stored in an Array with options and an answer
 const questions = [
   {
     question: "Commonly used data types DO Not include",
@@ -60,27 +60,19 @@ const questions = [
   },
 ];
 
-// Function to call start quiz //
+// Function to call initiate quiz //
 function initiateQuiz() {
-  //resets the current question index to 0 so the quiz can run again.
+  //resets the quiz params. 
   currentQuestionIndex = 0;
-
-  // clears the old timer before starting another quiz
   clearInterval(timer);
-
-  // Reset the score to 0
   score = 0;
-
-  // Resets the time left to the start value
   timeLeft = 90;
 
   // Hides the introduction section explaining the rules
   document.getElementById("introduction").classList.add("hide");
 
-  // Clears the content of the initials screen
+  // Clears the content of the initials and leaderboard screens
   submissionScreenEl.innerHTML = "";
-
-  // Clears the content of the leaderboard screen
   leaderBoardEl.innerHTML = "";
 
   // Shows the quiz question card
@@ -93,19 +85,16 @@ function initiateQuiz() {
   // selects the start button by id and adds the start_btn style
   document.getElementById("start").classList.add("start_btn");
 
-  // First question
+  // First question is asked
   askQuestions();
 }
 
 // Function to call the update of timer.
-
 function updateTimer() {
   // If time left is 0
-
   if (timeLeft <= 0) {
-    // Stops the timer if time reaches 0
-
-    endOfQuiz(); // Will call endQuiz
+    // Stops the timer if time reaches 0, calls endQuiz
+    endOfQuiz(); 
   } else {
     //Subtracts the time left by 1
     timeLeft--;
@@ -113,7 +102,7 @@ function updateTimer() {
     timeEl.textContent = timeLeft + " seconds";
   }
 }
-
+// Function to display asking questions when quiz starts
 function askQuestions() {
   currentQuestion = questions[currentQuestionIndex];
 
@@ -144,42 +133,30 @@ function askQuestions() {
 
   // add the content for the element
   scoreInfo.textContent = "Score: " + score;
-  scoreInfo.classList.add("score-info");
+  scoreInfo.classList.add("score_info");
 
-  // Display the result from the lasdt question if a result is there
-  displayResult();
+  
 }
-
+//Function to resolve the users choice for answer and next question
 function choiceClick(event) {
   //get the text content from the selected option
   const selectedAnswer = event.target.textContent;
 
   // checks if the answer that was selected is correct
   if (selectedAnswer === currentQuestion.answer) {
-    //Increase the score for correct answers
+    //Increase the score if the answer is correct
     score += 10;
 
-    //Display the correct answer on the screen
-    displayResult("Correct");
   } else {
-    // Subtract time for the incorrect answer
-    timeLeft -= timePenalty;
+      // Subtract time for the incorrect answer
+      timeLeft -= timePenalty;
 
-    // Display incorrect on the screen
-    displayResult("Incorrect");
+      // Subtract points for the incorrect answer
+      score -= 10;
+      // Ensure the score doesn't go below 0
+      score = Math.max(0, score);
+
   }
-
-  // create an element
-  //Display the right or wrong result at the bottom of next question
-  const resultEl = document.createElement("p");
-
-  // add content to the created element
-  resultEl.textContent =
-    selectedAnswer === currentQuestion.answer ? "Correct" : "Incorrect";
-  resultEl.classList.add("result");
-
-  //Append the result element to the quiz container
-  quizEl.appendChild(resultEl);
 
   // Moves to the next question or can end the quiz
   currentQuestionIndex++;
@@ -189,24 +166,6 @@ function choiceClick(event) {
     askQuestions();
   } else {
     endOfQuiz();
-  }
-}
-
-function displayResult(result) {
-  if (result) {
-    //Create the result element
-    const resultEl = document.createElement("p");
-
-    // add content to the result element
-    resultEl.textContent = result;
-
-    //append the result element to the quiz container
-    quizEl.appendChild(resultEl);
-
-    //remove the result element after a short delay
-    setTimeout(() => {
-      resultEl.remove();
-    }, 10000);
   }
 }
 
@@ -220,6 +179,7 @@ function endOfQuiz() {
   submissionScreen();
 }
 
+// Function to show submission screen
 function submissionScreen() {
   // reveals the submission screen
   submissionScreenEl.classList.remove("hide");
@@ -235,7 +195,7 @@ function submissionScreen() {
 
   // add contnet to your element
   h3El.textContent = "All Done!";
-  scoreTotalEl.innerHTML = "<p>Your final score is blah</p>";
+  scoreTotalEl.innerHTML = `<p>Your final score is ${score}</p>`;
   labelEl.textContent = "Enter Initials:";
   inputEl.setAttribute("type", "text");
   inputEl.setAttribute("id", "user_initials");
@@ -253,19 +213,22 @@ function submissionScreen() {
   inputContainerEl.append(labelEl, inputEl);
   btnSubmitEl.append(buttonEl);
 
-  scoreTotalEl.innerHTML = `<p>Your final score is ${score}</p>`;
+  
 
   // Event listener for the submit button
   btnSubmitEl.addEventListener("click", submissionInput);
 }
 
+// Function for user input during submission
 function submissionInput() {
   // getting this user initials , trim removes whitespace
   userInitials = inputEl.value.trim();
 
+  // checks if user initials are NOT empty. 
   if (userInitials !== "") {
+    // saves the users high scores and initials 
     saveHighScore(userInitials, score);
-
+    //Displays the leaderboard
     leaderBoard();
   } else {
     alert("please enter name or initials. ");
@@ -277,21 +240,34 @@ function printLeaderBoard(savedHighScores) {
   scoresContainer.innerHTML = '';
   
   savedHighScores.forEach((highScore, index) => {
+    // create element 
     const scoreEntry = document.createElement('p');
+    // add content to element
     scoreEntry.textContent = `${index + 1}. ${highScore.initials}: ${highScore.score}`;
+   
+    // add style to element
+    scoreEntry.classList.add('leaderboard_entry');
+    scoresContainer.classList.add('leaderboard_entry');
+    
+    // append to parent element 
     scoresContainer.appendChild(scoreEntry);
+ 
+    
+
   });  
 
-
+  // updates the scoresContainer with the new info 
   return scoresContainer;
 }
 
 
-
+// Function to Display the leaderboard
 function leaderBoard() {
+  // 2 lines: hide submission screen, shows the leaderboard screen
   submissionScreenEl.classList.add("hide");
-  // shows the leaderboard screen
   leaderBoardEl.classList.remove("hide");
+
+  
 
   // create your element
   const h4El = document.createElement("h4");
@@ -308,8 +284,9 @@ function leaderBoard() {
   h4El.classList.add("high_score_title");
   returnBtn.classList.add("btn", "return_btn");
   clearBtn.classList.add("btn", "clear_btn");
- 
-  leaderBoardEl.innerHTML = ""; // Clear existing content
+  
+  //Clear existing content in the leaderboard element 
+  leaderBoardEl.innerHTML = ""; // 
   
   // Retrieve existing high scores from local storage
   const savedHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
@@ -317,12 +294,10 @@ function leaderBoard() {
   // Display high scores using the printLeaderboard function
   const scoresContainer = printLeaderBoard(savedHighScores);
   
-  
-  
   // append your element to the parent element
-  leaderBoardEl.append(h4El, returnBtn, clearBtn, scoresContainer);
+  leaderBoardEl.append(h4El, scoresContainer, returnBtn, clearBtn, );
 
-  // Event listeners
+  // Event listeners for the return and clear buttons 
   document
     .querySelector(".return_btn")
     .addEventListener("click", returnToStart);
@@ -388,21 +363,23 @@ function displayHighScores(savedHighScores) {
 
   
   savedHighScores.forEach((highScore, index) => {
+    
+    // create an element
     const scoreEntry = document.createElement("p");
+    // add content to the element
     scoreEntry.textContent = `${index + 1}. ${highScore.initials}: ${highScore.score}`;
+    
+    // style the element
+    scoreEntry.classList.add('leaderboard_entry');
+    
+    //append the element 
     scoresContainer.appendChild(scoreEntry);
+    
+    
 
   
   });
 }
-
-
-
-
-
-
-
-
 
 
 
