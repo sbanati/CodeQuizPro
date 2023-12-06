@@ -289,3 +289,38 @@ nav {
     font-size: 1.5rem;
 
 }
+
+/*!* Media Queries Start */
+
+/* Media query for screens smaller than 768px (typical smartphones) */
+@media only screen and (max-width: 768px) {
+    .info_rules p {
+        font-size: 1.8rem;
+    }
+
+    .container {
+
+        padding-left: 5rem;
+    }
+
+    .quiz_question{
+
+        font-size: 2.5rem;
+    }
+
+}
+
+/*  media query for Tablet Screens given range 769-1024 px */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    
+    .info_rules p{
+        font-size: 2rem;
+    }
+
+    .container {
+        padding-left: 4rem;
+    }
+
+
+}
+

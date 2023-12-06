@@ -49,14 +49,14 @@ const questions = [
     question:
       "String values must be enclosed within ____ when being assigned to variables.",
     options: ["commas", "curly brackets", "quotes", "parenthesis"],
-    answer: "curly brackets",
+    answer: "quotes",
   },
 
   {
     question:
       "A very useful tool used during development and debugging for printing content to the debugger is?",
     options: ["JavaScript", "Terminal Bash", "for loop", "console.log"],
-    answer: "for loop",
+    answer: "console.log",
   },
 ];
 
@@ -152,7 +152,7 @@ function choiceClick(event) {
       timeLeft -= timePenalty;
 
       // Subtract points for the incorrect answer
-      score -= 10;
+      score -= 5;
       // Ensure the score doesn't go below 0
       score = Math.max(0, score);
 
@@ -390,7 +390,10 @@ highscoreLink.addEventListener("click", viewHighScores);
  
 
 
+/*
+TODO 2 questions have the wrong answer FIX!
+TODO change score penalty to -5 and add disclaimer to intro
+TODO add Media Queries. 
 
- 
 
-
+*/
