@@ -1,3 +1,4 @@
+/* Common Color Scheme used for the quiz */
 :root {
 
  --btn-main-color: #6441a5;
@@ -8,7 +9,7 @@
 
 
 }
-
+/* Format for the page  */
 
 *{
     margin: 0;
@@ -17,16 +18,16 @@
     font-family: 'Inter', sans-serif;
     font-size: 62.5%; /* 1rem = 10px */
 }
-
+/*Hide class  */
 .hide {
     display:none;
 }
-
+/* color for the body of the page */
 body {
     background: var(--accent-bg-color);
 
 }
-
+/* Header formatting  */
 header {
     display: flex;
     justify-content: space-between;
@@ -35,14 +36,14 @@ header {
    
     
 }
-
+/* nav formatting */
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
-
+/* styling applied to highscores link  */
 .view_high_scores {
     color: var(--btn-event-color);
     text-decoration: none;
@@ -50,7 +51,7 @@ nav {
     font-weight: 500;
     margin-left: 5rem;
 }
-
+/*timers styling */
 #timer {
     color: var(--main-text-color);
     margin-right: 2rem;
@@ -61,7 +62,7 @@ nav {
 
 
 
-/* Formatting start quiz button */
+
 /* Styles applied to the Start Quiz Button */ 
 
 .start_btn {
@@ -79,12 +80,13 @@ nav {
     left: 50%;  
 }
 
-
+/* Hover effect for the start buttn  */
 .start_btn:hover {
     background-color:var(--btn-event-color);
     
 }
 
+/* title screens positioning */
 .info_box {
     position:absolute;
     top: 40%;
@@ -92,7 +94,7 @@ nav {
     transform: translate(-50%, -50%);  
     text-align: center;   
 }
-
+/*styling applied to h1 element and quiz title element  */
 .info_title h1, .question-title {
     font-size: 4.5rem;
     color: var(--main-text-color);
@@ -101,7 +103,7 @@ nav {
     
     
 }
-
+/* styling applied to <p> element of front page  */
 .info_rules p {
     color:var(--main-text-color);
     font-weight: 500;
@@ -129,7 +131,7 @@ nav {
 }
 
 
-
+/* Formatting and styling option buttons   */
 
   .btn_column {
     display: flex;
@@ -153,25 +155,23 @@ nav {
 
 
 
-
+/* adding hover effect to the option buttons  */
 .btn_column:hover {
     background-color: var(--btn-event-color);
     
 }
 
-
+/* styling applied to the quiz question element  */
 .quiz_question {
     color:var(--main-text-color);
     font-size: 3rem;
     font-weight: 600;
     margin-bottom: 3rem;
     text-align: left;
-    
-    
 
 }
 
-
+/* you are done message styling  */
 .done_prompt {
     font-size: 3.5rem;
     color: var(--main-text-color);
@@ -179,9 +179,8 @@ nav {
     text-align: left;
     margin-bottom: 1rem; 
     
-
 }
-
+/* styling applied to score totals message   */
 .score_total  {
     color:var(--main-text-color);
     font-weight: 500;
@@ -194,7 +193,7 @@ nav {
     justify-content: left;
     
 }
-
+/* Formatting for the input screen container   */
 .input_container {
     display: flex;
     align-items: center;
@@ -203,22 +202,24 @@ nav {
     font-weight: 500;
     margin-right: 1rem;
 
-
 }
+
+/* style applied to the input bar  */
 .input_container input {
     font-size: 2rem;
     width: 40%;
 }
  
+/* styling for the initials label  */
 .input_container label {
     font-size: 1.9rem;
     font-weight: 500;
     margin-right: 1rem;
     
-}
+} 
 
 
-
+/* styling applied to the submission btn */
 .submission_btn {
     
     background-color:var(--btn-main-color);
@@ -230,17 +231,15 @@ nav {
     border-radius: 0.4rem;
     margin-bottom: 5rem;  
     
-    
-    
 }
 
-
+/* hover effect on submission button  */
 .submission_btn:hover {
     background-color: var(--btn-event-color);
 }
 
 
-
+/* return and clear button on leaderboard screen styling   */
 .return_btn,
 .clear_btn {
     
@@ -259,11 +258,10 @@ nav {
     white-space: nowrap;
     align-items: center;
     
-    
 }
 
 
-
+/* highscore title styling   */
 .high_score_title{
     font-size: 3rem;
     color: var(--main-text-color);
@@ -272,7 +270,7 @@ nav {
     margin-bottom: 1rem; 
     
 }
-
+/* styling for the leaderboard text   */
 .leaderboard_entry{
     color:var(--main-text-color);
     font-weight: 500;
@@ -284,7 +282,7 @@ nav {
     line-height: 2.1rem;
 
 }
-
+/* styling for the score info below options btns  */
 .score_info{
     font-size: 1.5rem;
 
