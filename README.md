@@ -160,7 +160,18 @@ This code snippet is from the function leaderBoard. For context the lines above 
 <strong>const savedHighScores = JSON.parse(localStorage.getItem("highscores")) || [];<strong> <br>
 The localStorage.getItem gets teh data stored in the highscores key from local storage.
 The parse method is used to convert the data from string to a JavaScript object. The reason the || []; OR operator and then empty array are present is to ensure if there is an issue in data retrieval from local storage or parsing an empty value, there is a fall back.
-Without this, a parsing error could occur resulting in aa code break. 
+Without this, a parsing error could occur resulting in aa code break. <br>
+
+### Example 3: Function saveHighScores <br>
+<img src="images/code4.png" alt="function saveHighScores in Javascript "><br>
+This code snippet is from the Function saveHighScores. Its purpose is to add new highscores to the existing leaderboard list, sort the scores from highest value to lowest value, and create a limit of top 20 to the leaderboard. <br>
+
+I want to focus on the following 4 lines of code. <br>
+By using the push method we can add a new high score entry to the array of the currently existing highscores. Then we can use the sort method to arrange the highscores from descending order, ensuring the highest value will be rank 1.
+Then the splice method is used to cut the array length to the desired value, in this case maxHighScore is set to 20. Lastly the setItem method is used to store the updated highscores from above into local store in the same key highscores. We use the stringify 
+method to convert the JS objects into strings. Local storage can only store strings. Now when the quiz is exited and re-entered, the leaderboard data will persist unless cleared. 
+
+
 
 
 
