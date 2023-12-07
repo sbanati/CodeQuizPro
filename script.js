@@ -387,13 +387,13 @@ highscoreLink.addEventListener("click", viewHighScores);
 
 
 /*
-TODO 2 questions have the wrong answer FIX!
-TODO change score penalty to -5 and add disclaimer to intro
-TODO add Media Queries. 
+
+
+ 
 TODO add printLeaderBoard function to README explain line 250 and 256
 TODO add function leaderboard line 301 to README explain them.
 TODO Add viewhighscores function to README explain like 345
-TODO add savedhighscores function to README explain line 374
+TODO add savehighscores function to README explain line 374
 TODO explain line 367-375
 TODO  
 
