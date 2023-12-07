@@ -60,11 +60,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is a Javascript challenge where I was given a starter code of a random password generator. The user in mind can be anyone,
-but the instructions specified for an employee to create a random password with varying security levels. 
+This project is a Web API challenge where I was tasked with designing a fully responsive quiz. The specifics were to build a timed multiple choice quiz while using DOM manipulation via JavaScript to dynamically update HTML and CSS.
 <br><br>
-I was given an HTML/CSS/and Java file that had the clean responsive UI seen. I was tasked with coding the logic for the password generator.<br>
-No method was specified so I was able to approach the problem at my discretion. 
+
 
 
 
@@ -100,7 +98,7 @@ For anyone wanting to contribute <br>
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/sbanati/PassGen.git
+   git clone https://github.com/sbanati/Quiz.git
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -110,9 +108,10 @@ For anyone wanting to contribute <br>
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-<h3>gif of the password generator running. You can see the user going through each prompt.</h3>
+<h3>gif of the Code Quiz Pro. You can see the user going through each part of the quiz.</h3>
 
-![passGenGif](https://github.com/sbanati/PassGen/assets/149754544/ee2cefa3-adde-4342-8560-6f811e60212e)
+![codeQuizProGif](https://github.com/sbanati/Quiz/assets/149754544/9980dcfc-4cd7-4eed-899f-201cf03a1e51)
+
 
 <br>
 <br>
@@ -121,7 +120,13 @@ For anyone wanting to contribute <br>
 <br> I realize this method is not feasible for future projects as codes will get much bigger, but for this project its ok 
 <br> <br>
 
-<img src="screenshots/passGenCodeCommented.png" alt="vscode script.js"> 
+
+
+
+
+<img src="images/screenShot2.png" alt="multiple choice question with 4 purple boxes with choices">
+<img src="images/screenShot3.png" alt="input bar for initials to record your name and score for the leaderboard">
+
  
 
 
@@ -137,9 +142,8 @@ For anyone wanting to contribute <br>
 
 <h3>Possible features</h3>
 
-* New design and style for prompt windows with yes/no confirmation instead of ok/cancel
-* GUI element built into the page where the prompts are not necessary and instead are check boxes for y/n prompts and a slide bar for the password length
-* Copy to clip board icon so the user can copy the password with ease
+* Adding more questions 
+  
 
 
 
@@ -168,7 +172,6 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 <!-- ACKNOWLEDGEMENT -->
 ## Acknowledgement
-* Practiced pair programming with Dan.
 * Worked with Jason to compare and contrast our projects and see differing methods. 
 
 
@@ -182,7 +185,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 Your Name - [@twitter_TherealSLVR](https://twitter.com/TherealSLVR) - smbanati@gmail.com
 
-Project Link: https://github.com/sbanati/PassGen
+Project Link: https://github.com/sbanati/Quiz
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -192,6 +195,6 @@ Project Link: https://github.com/sbanati/PassGen
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 References:
-* https://dev.to/envoy_/150-badges-for-github-pnk#skills (for badges)
-* https://www.flaticon.com/free-icon/password_9177799 (for logo)
-* https://github.com/othneildrew/Best-README-Template (best readme template, given to me by the Grader from challenge 1!😊)
+* Scheduled Tutoring session with Jose Lopez
+* When stuck used Xpert Learning Assisstant for help/advice/research
+* Used BSC learning assisstant when stuck 
