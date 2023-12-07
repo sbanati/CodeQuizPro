@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/sbanati/Quiz">  
-    <img src="screenshots/passLogo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h1 align="center">Code Quiz Pro</h1>
@@ -22,7 +22,7 @@
     <br />
 
     
-  <a href="https://sbanati.github.io/passGenerator/">View Demo</a>
+  <a href="https://sbanati.github.io/CodeQuizPro/">View Demo</a>
     
   <img src="images/screenshot1.png" alt="quiz intro screen">
 
@@ -89,7 +89,7 @@ This project is a Web API challenge where I was tasked with designing a fully re
 ## Getting Started
 
  <h3>For end users</h3> 
-https://sbanati.github.io/passGenerator/  <br>
+https://sbanati.github.io/CodeQuizPro/  <br>
 
 
 
