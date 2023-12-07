@@ -8,7 +8,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/sbanati/Quiz">  
+  <a href="https://github.com/sbanati/CodeQuizPro">  
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -99,7 +99,7 @@ For anyone wanting to contribute <br>
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/sbanati/Quiz.git
+   git clone https://github.com/sbanati/CodeQuizPro.git
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
