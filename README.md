@@ -140,14 +140,32 @@ For anyone wanting to contribute <br>
 ### Example 1: Function printLeaderBoard 
 
 
-<img src="images/code1.png" alt="function printLeaderBoard in Javascript ">
+<img src="images/code1.png" alt="function printLeaderBoard in Javascript "><br>
 
-<br> 
-This function takes the savedHighScores as a param. I use the forEach method to to do this.
+
+This function takes the savedHighScores as a param.<br>
+
+
 
 <strong>savedHighScores.forEach((highScore, index) => <strong> <br>
 <br>
-The savedHighScore is an array in which every element within the array has a specific high score. I use the forEach method in JavaScript to interact with each highscore as a separate list item. Everytime the loop repeats, the highScore represents the current score element and the index is the position of the score element within the array. The Arrow function that comes at the end of the line is simply saying to apply the following lines of code to each element in the array. In this case, print the position, initials and score content. This is completed by first creating scoreEntry var that prints in a <p> element. scoreEntry is then set to get the text content and then styled and appended to the scoreContainer. 
+The savedHighScore is an array in which every element within the array has a specific high score. I use the forEach method in JavaScript to interact with each highscore as a separate list item. Everytime the loop repeats, the highScore represents the current score element and the index is the position of the score element within the array. The Arrow function that comes at the end of the line is simply saying to apply the following lines of code to each element in the array. In this case, print the position, initials and score content. This is completed by first creating scoreEntry var that prints in a paragraph element. scoreEntry is then set to get the text content and then styled and appended to the scoreContainer. 
+
+<br>
+
+### Example 2: Function leaderBoard
+
+<img src="images/code2.png" alt="function leaderBoard in Javascript "><br>
+This code snippet is from the function leaderBoard. For context the lines above this code snippet are simply manipulating the DOM elements. <br>
+<strong>const savedHighScores = JSON.parse(localStorage.getItem("highscores")) || [];<strong> <br>
+The localStorage.getItem gets teh data stored in the highscores key from local storage.
+The parse method is used to convert the data from string to a JavaScript object. The reason the || []; OR operator and then empty array are present is to ensure if there is an issue in data retrieval from local storage or parsing an empty value, there is a fall back.
+Without this, a parsing error could occur resulting in aa code break. 
+
+
+
+
+
 
 
 
