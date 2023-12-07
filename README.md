@@ -24,7 +24,7 @@
     
   <a href="https://sbanati.github.io/passGenerator/">View Demo</a>
     
-  <img src="images/screenshot1" alt="quiz intro screen">
+  <img src="images/screenshot1.png" alt="quiz intro screen">
 
   </p>
 </div>
