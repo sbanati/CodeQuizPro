@@ -243,6 +243,6 @@ Project Link: https://github.com/sbanati/Quiz
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 References:
-* Scheduled Tutoring session with Jose Lopez
-* When stuck used Xpert Learning Assisstant for help/advice/research
-* Used BSC learning assisstant when stuck 
+* Tutoring session with Jose Lopez. He told me to focus on DOM manipulation. We worked on the initiate quiz function and show question function together and I used those as framework for dynamic DOM manipulation.
+* consulted Xpert Learning Assisst when stuck or needed help with next steps  or research. Consulted it for research to explain what methods I can use and how to apply them. 
+* Used BSC learning assisstant when all else failed and was HARD STUCK 
