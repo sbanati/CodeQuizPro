@@ -49,6 +49,7 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#additions">Additions</a></li>
+    <li><a href="code explanation">Code Explanation</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contributing">Acknowledgement</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -129,12 +130,19 @@ For anyone wanting to contribute <br>
 
  
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<br>
+<br>
+<!-- CODE EXPLANATION -->
+## Code Explanation
+
+
 
 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
