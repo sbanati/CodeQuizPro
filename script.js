@@ -3,9 +3,9 @@ let timer; // Marks the timer
 let score = 0; // Users starting score
 let currentQuestionIndex = 0; // Tracks the questions index
 let timeLeft = 90; // Starting time that will count down from
-let userInitials;
-let inputEl;
-let currentQuestion;
+let userInitials; // contains the user initials 
+let inputEl; // contains the inpit for the initials 
+let currentQuestion; // 
 const maxHighScore = 20;// max size of leaderboard
 const timePenalty = 10;
 
@@ -104,28 +104,34 @@ function updateTimer() {
 }
 // Function to display asking questions when quiz starts
 function askQuestions() {
+  // prints the current question from the question at the current index
   currentQuestion = questions[currentQuestionIndex];
 
-  // create your element
+  // create question page elements
   const h2El = document.createElement("h2");
   const questionDiv = document.createElement("div");
   const scoreInfo = document.createElement("p");
 
+  /* clears old question when the array moves */
   quizEl.innerHTML = "";
 
-  // add content to your question element
+  // adds content to the question element
   h2El.textContent = currentQuestion.question;
   h2El.setAttribute("class", "quiz_question");
-
+  
+  // loops goes through the options for the respective current question  
   for (let i = 0; i < currentQuestion.options.length; i++) {
+    // create button element for each option
     const btnEl = document.createElement("button");
 
+    // sets the text content of the button for each current option
     btnEl.textContent = currentQuestion.options[i];
+    // sets css class for the buttons 
     btnEl.setAttribute("class", "btn_column");
-
-    btnEl.addEventListener("click", choiceClick);
-
+    // appends the button to the div 
     questionDiv.append(btnEl);
+    // adds click event listener option buttons and calls choice click function
+    btnEl.addEventListener("click", choiceClick);
   }
 
   // append your element to the parent element
@@ -139,7 +145,7 @@ function askQuestions() {
 }
 //Function to resolve the users choice for answer and next question
 function choiceClick(event) {
-  //get the text content from the selected option
+  //get the text content from the selected option 
   const selectedAnswer = event.target.textContent;
 
   // checks if the answer that was selected is correct
@@ -184,7 +190,7 @@ function submissionScreen() {
   // reveals the submission screen
   submissionScreenEl.classList.remove("hide");
 
-  // create your element
+  // create submission screen elements
   const h3El = document.createElement("h3");
   const scoreTotalEl = document.createElement("div");
   const inputContainerEl = document.createElement("div");
@@ -193,7 +199,7 @@ function submissionScreen() {
   const btnSubmitEl = document.createElement("div");
   const buttonEl = document.createElement("button");
 
-  // add contnet to your element
+  // add content to the submission element
   h3El.textContent = "All Done!";
   scoreTotalEl.innerHTML = `<p>Your final score is ${score}</p>`;
   labelEl.textContent = "Enter Initials:";
@@ -202,13 +208,13 @@ function submissionScreen() {
   btnSubmitEl.setAttribute("id", "btn_submit");
   buttonEl.textContent = "Submit";
 
-  // Add class styles to the elements
+  // Add class styles to the submission elements
   h3El.classList.add("done_prompt");
   scoreTotalEl.classList.add("score_total");
   buttonEl.classList.add("submission_btn");
   inputContainerEl.classList.add("input_container");
 
-  // append your element to the parent element
+  // append th elements to the parent submissionScreenEl
   submissionScreenEl.append(h3El, scoreTotalEl, inputContainerEl, btnSubmitEl);
   inputContainerEl.append(labelEl, inputEl);
   btnSubmitEl.append(buttonEl);
@@ -221,7 +227,7 @@ function submissionScreen() {
 
 // Function for user input during submission
 function submissionInput() {
-  // getting this user initials , trim removes whitespace
+  // getting the user initials , trim removes whitespace
   userInitials = inputEl.value.trim();
 
   // checks if user initials are NOT empty. 
@@ -235,21 +241,25 @@ function submissionInput() {
   }
 }
 
+// function prints the leaderboard with the saved highscore data
 function printLeaderBoard(savedHighScores) {
   // Clear existing content before adding new scores
   scoresContainer.innerHTML = '';
   
+  //Using foreach loop method in sHS array and adding entires to scoresContainer
   savedHighScores.forEach((highScore, index) => {
-    // create element 
+    
+    // create scoreEntry element for the leaderboard entries 
     const scoreEntry = document.createElement('p');
-    // add content to element
+    
+    // sets the text content of scoreEntry to the initials, score and position of the highscore.
     scoreEntry.textContent = `${index + 1}. ${highScore.initials}: ${highScore.score}`;
    
-    // add style to element
+    // add style to the scoreEntry element 
     scoreEntry.classList.add('leaderboard_entry');
-    scoresContainer.classList.add('leaderboard_entry');
+    // scoresContainer.classList.add('leaderboard_entry');
     
-    // append to parent element 
+    // append scoreEntry element to parent element scoresContainer 
     scoresContainer.appendChild(scoreEntry);
  
     
@@ -268,13 +278,12 @@ function leaderBoard() {
   leaderBoardEl.classList.remove("hide");
 
   
-
-  // create your element
+  // creates elements for the leaderboard 
   const h4El = document.createElement("h4");
   returnBtn = document.createElement("button");
   clearBtn = document.createElement("button");
   
-  // add content to your element
+  // sets content for the leaderboard elements
   h4El.textContent = "High scores";
   returnBtn.textContent = "Return";
   clearBtn.textContent = "Clear Scores";
@@ -288,16 +297,17 @@ function leaderBoard() {
   //Clear existing content in the leaderboard element 
   leaderBoardEl.innerHTML = ""; // 
   
-  // Retrieve existing high scores from local storage
+  // gets the value associated with the key highscores , JSON.parse method converts string into JS object.
   const savedHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
   
-  // Display high scores using the printLeaderboard function
+  // calls the printLB func that makes the savedHS argument. The data is stored in scoresContainer. 
+  // scoresContaienr now holds the HTML elements of the high scores. 
   const scoresContainer = printLeaderBoard(savedHighScores);
   
-  // append your element to the parent element
+  // append the element to the parent leaderBoard element
   leaderBoardEl.append(h4El, scoresContainer, returnBtn, clearBtn, );
 
-  // Event listeners for the return and clear buttons 
+  // Event listeners for the return and clear buttons each calling the respective function.
   document
     .querySelector(".return_btn")
     .addEventListener("click", returnToStart);
@@ -315,76 +325,62 @@ function returnToStart() {
 function clearLeaderBoard() {
   //clears the leaderboard scores
   document.getElementById("scoresContainer").innerHTML = "";
-  
+  // uses removeItem function to remove the key highscores from local storage.
+  // clears all the previously saved high scores.
   localStorage.removeItem('highscores');
 
 
 }
 
+//function to Display the highscores 
 function viewHighScores() {
-  // Hides the introduction and shows the leaderboard
+  // Hides the introduction and quiz body and shows the leaderboard
   document.getElementById("introduction").classList.add("hide");
   document.getElementById("quiz_body").classList.add("hide");
   leaderBoardEl.classList.remove("hide");
 
+  //use getitem function to get stored info from the highscores key
+  // parse function is used to convert the string data to JS object. 
+  // if data retrieved does not exist (null) , default to empty array. 
   const savedHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-  // Display saved high scores
-  displayHighScores(savedHighScores);
+  // calls the displayHS function that is passing savedHS as argument
+  printLeaderBoard(savedHighScores);
 }
-
+//Function to save a new high score 
 function saveHighScore(initials, score) {
-    //Retrieve existing high scores from local storage
+    //Retrieve existing high scores from local storage or starts an empty array if null
     const savedHighScores = JSON.parse(localStorage.getItem('highscores')) || [];
 
-    // Create a new high score entrry
+    // Create a new high score entrry with the initials and score params
     const newHighScore = {
         initials: initials,
         score: score,
     
       };
+    
+    // uses push function to add new highscores to existing list of highscores
+    savedHighScores.push(newHighScore);
 
-  savedHighScores.push(newHighScore);
+    // uses sort property to sort the savedHighScores array
+    // sorts in descending order based on score so highest score is first 
+    savedHighScores.sort((a, b) => b.score - a.score);
+    
+    // Uses splice property to limit the high scores to maxHS value 
+    savedHighScores.splice(maxHighScore);
 
-  savedHighScores.sort((a, b) => b.score - a.score);
-
-  savedHighScores.splice(maxHighScore);
-
-  localStorage.setItem('highscores', JSON.stringify(savedHighScores));
-
-
+    //setitem property stores highscores key in local storage
+    // stringify property is used to convert JS object data into string
+    // allows the leaderboard to exist even when page is closed
+    localStorage.setItem('highscores', JSON.stringify(savedHighScores));
 
   }
 
-function displayHighScores(savedHighScores) {
-  const scoresContainer = document.getElementById('scoresContainer');
-
-  scoresContainer.innerHTML = '';
-
-  
-  savedHighScores.forEach((highScore, index) => {
-    
-    // create an element
-    const scoreEntry = document.createElement("p");
-    // add content to the element
-    scoreEntry.textContent = `${index + 1}. ${highScore.initials}: ${highScore.score}`;
-    
-    // style the element
-    scoreEntry.classList.add('leaderboard_entry');
-    
-    //append the element 
-    scoresContainer.appendChild(scoreEntry);
-    
-    
-
-  
-  });
-}
 
 
-
-
+// event listener attached to start button, it will call initiate Quiz 
 document.querySelector(".start_btn").addEventListener("click", initiateQuiz);
+// Calls the viewhighscore function when highscore link is clicked 
 highscoreLink.addEventListener("click", viewHighScores);
 
  
@@ -394,6 +390,12 @@ highscoreLink.addEventListener("click", viewHighScores);
 TODO 2 questions have the wrong answer FIX!
 TODO change score penalty to -5 and add disclaimer to intro
 TODO add Media Queries. 
+TODO add printLeaderBoard function to README explain line 250 and 256
+TODO add function leaderboard line 301 to README explain them.
+TODO Add viewhighscores function to README explain like 345
+TODO add savedhighscores function to README explain line 374
+TODO explain line 367-375
+TODO  
 
 
 */
