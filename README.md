@@ -137,7 +137,19 @@ For anyone wanting to contribute <br>
 <!-- CODE EXPLANATION -->
 
 ## Code Explanation
+<br> This section will explain some code snippets that I had to do additional research on outside of class to implement. 
+<br>
+### Example 1: Function printLeaderBoard 
 
+
+<img src="images/code1.png" alt="function printLeaderBoard in Javascript ">
+
+<br> 
+This function takes the savedHighScores as a param. I use the forEach method to to do this.
+
+<strong>savedHighScores.forEach((highScore, index) => <strong> <br>
+<br>
+The savedHighScore is an array in which every element within the array has a specific high score. I use the forEach method in JavaScript to interact with each highscore as a separate list item. Everytime the loop repeats, the highScore represents the current score element and the index is the position of the score element within the array. The Arrow function that comes at the end of the line is simply saying to apply the following lines of code to each element in the array. In this case, print the position, initials and score content. 
 
 
 
