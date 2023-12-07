@@ -48,10 +48,10 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#additions">Additions</a></li>
-    <li><a href="code explanation">Code Explanation</a></li>
+    <li><a href="#additions">Additions</a></li>w
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contributing">Acknowledgement</a></li>
+    <li><a href="#code-explanation">Code-Explanation</a></li>
+    <li><a href="#acknowledgement">Acknowledgement</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
