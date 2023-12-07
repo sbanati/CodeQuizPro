@@ -117,9 +117,7 @@ For anyone wanting to contribute <br>
 <br>
 <br>
 
-<h3>Screenshot provided below of the code for this project with extended notes with explanations.</h3> <br>
-<br> I realize this method is not feasible for future projects as codes will get much bigger, but for this project its ok 
-<br> <br>
+
 
 
 
@@ -149,7 +147,7 @@ This function takes the savedHighScores as a param. I use the forEach method to 
 
 <strong>savedHighScores.forEach((highScore, index) => <strong> <br>
 <br>
-The savedHighScore is an array in which every element within the array has a specific high score. I use the forEach method in JavaScript to interact with each highscore as a separate list item. Everytime the loop repeats, the highScore represents the current score element and the index is the position of the score element within the array. The Arrow function that comes at the end of the line is simply saying to apply the following lines of code to each element in the array. In this case, print the position, initials and score content. 
+The savedHighScore is an array in which every element within the array has a specific high score. I use the forEach method in JavaScript to interact with each highscore as a separate list item. Everytime the loop repeats, the highScore represents the current score element and the index is the position of the score element within the array. The Arrow function that comes at the end of the line is simply saying to apply the following lines of code to each element in the array. In this case, print the position, initials and score content. This is completed by first creating scoreEntry var that prints in a <p> element. scoreEntry is then set to get the text content and then styled and appended to the scoreContainer. 
 
 
 
